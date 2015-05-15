@@ -1,2 +1,8 @@
-%h1 Requests#new
-%p Find me in app/views/requests/new.html.haml
+%h1 Dodaj nowe zgłoszenie.
+
+= simple_form_for @request do |f|
+  = f.input :description, label: 'Opis:'
+  = f.input :category, collection: Request::CATEGORIES, as: :radio_buttons,  label: 'Kategoria'
+  = f.input :email, label: 'Email:'
+
+  = f.submit :Zgłoś, class: 'btn btn-primary'
