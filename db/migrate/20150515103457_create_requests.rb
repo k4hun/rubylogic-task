@@ -4,7 +4,7 @@ class CreateRequests < ActiveRecord::Migration
       t.string :description
       t.string :category
       t.string :email
-      t.decimal :price
+      t.integer :price
       t.datetime :deadline
       t.boolean :read
       t.timestamps null: false
