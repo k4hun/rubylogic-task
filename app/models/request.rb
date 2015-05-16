@@ -1,5 +1,4 @@
 class Request < ActiveRecord::Base
-  before_validation :set_as_unread
   before_save :set_price, :set_deadline
 
   validates :description, :email, :category, presence: { message: 'Pole nie może być puste!' }
@@ -8,15 +7,10 @@ class Request < ActiveRecord::Base
   validates :description, length: { minimum: 100, message: 'Pole musi zawierać minimum 100 znaków!' }
   validates :email, format: { with: (/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/), message: 'Zły format adresu email!' }
 
-  def set_as_unread
-    self.read = false
-    true
-  end
-
   def set_price
     case self.category
     when 'awaria'
-      if Time.now >= 17 || Time.now <= 9
+      if Time.now.hour >= 17 || Time.now.hour <= 9
         self.price = 100
       else
         self.price = 50
