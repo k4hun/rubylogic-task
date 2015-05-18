@@ -1,8 +1,7 @@
 %h1 Dodaj nowe zgłoszenie.
-
-= simple_form_for @request do |f|
-  = f.input :description, label: 'Opis:'
-  = f.input :category, collection: Request::CATEGORIES, as: :radio_buttons,  label: 'Kategoria'
-  = f.input :email, label: 'Email:'
-
-  = f.submit :Zgłoś, class: 'btn btn-primary'
+.col-md-6
+  = simple_form_for @request , html: { class: 'form-horizontal' } do |f|
+    = f.input :description, label: 'Opis:', error_html: { class: 'alert alert-danger'}
+    = f.input :category, collection: Request::CATEGORIES, as: :radio_buttons,  label: 'Kategoria', error_html: { class: 'alert alert-danger'}
+    = f.input :email, label: 'Email:', error_html: { class: 'alert alert-danger'}
+    = f.submit :Zgłoś, class: 'btn btn-primary'
